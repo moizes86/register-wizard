@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 
 const CustomForm = ()=>{
  const [loginData, setLoginData] = useState({
-     username: {
+     name: {
        value: "",
        errors: [],
        validations: {

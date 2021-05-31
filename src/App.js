@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import InputGroup from "react-bootstrap/InputGroup";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
+import React from "react";
 import "./App.css";
 
-function App() {
-  return <div className="App">
-    <Form>
-      <p>yakov</p>
-      <p>kassa</p>
+import CustomForm from "./components/CustomForm";
 
-    </Form>
-  </div>;
+function App() {
+  return (
+    <div className="App">
+      <CustomForm />
+      <p>hello world</p>
+    </div>
+    
+  );
 }
 
 export default App;

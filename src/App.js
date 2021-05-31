@@ -8,11 +8,13 @@ import Col from "react-bootstrap/Col";
 import "./App.css";
 
 function App() {
-  return <div className="App">
-    <Form>
-      
-    </Form>
-  </div>;
+  return (
+    <div className="App">
+      <Form>
+        <h1>Dor is in the house</h1>
+      </Form>
+    </div>
+  );
 }
 
 export default App;

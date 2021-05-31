@@ -9,7 +9,6 @@ function App() {
       <CustomForm />
       <p>hello world</p>
     </div>
-    
   );
 }
 

@@ -27,27 +27,50 @@ const CustomForm = ()=>{
        },
      },
 
-     address: {
-       value: "",
-       errors: [],
-       validations: {
-         required: true,
-       },
-     },
-
-     course: {
-       value: "",
-       errors: [],
-       validations: {
-         required: true,
-       },
-     },
-
-     gender: {
+     birthday: {
        value: null,
        errors: [],
        validations: {
          required: true,
+       },
+     },
+
+     city: {
+       value: null,
+       errors: [],
+       validations: {
+         required: true,
+       },
+     },
+
+     street: {
+       value: null,
+       errors: [],
+       validations: {
+         required: true,
+       },
+     },
+
+     number: {
+       value: null,
+       errors: [],
+       validations: {
+         required: false,
+       },
+     },
+
+     image: {
+       value: null,
+       errors: [],
+       validations: {
+         required: true,
+       },
+     },
+     hobbies: {
+       value: null,
+       errors: [],
+       validations: {
+         required: false,
        },
      },
    });

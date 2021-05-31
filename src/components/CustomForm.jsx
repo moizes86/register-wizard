@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ErrorMessage from './ErrorMessages';
 
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -7,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import ErrorMessages from "./ErrorMessages";
 
 const CustomForm = () => {
   const [loginData, setLoginData] = useState({
@@ -15,7 +17,7 @@ const CustomForm = () => {
       errors: [],
       validations: {
         required: true,
-        pattern: /^[a-zA-Z][0-9a-zA-Z]{5,}/g,
+        pattern: /(^[a-zA-Z][0-9a-zA-Z]{2,}.[a-zA-Z][0-9a-zA-Z]{2,})/g,
       },
     },
 
@@ -76,23 +78,59 @@ const CustomForm = () => {
     },
   });
 
+  const validateInput = ({ target: { value, name } }) => {
+      console.log(name);
+      console.log(value);
+    const newErrors = [];
+    const { validations } = loginData[name];
+
+    if (validations.required && !value) {
+      newErrors.push(`${name} is required`);
+    }
+
+    if (validations.pattern && !validations.pattern.test(value)) {
+      newErrors.push(`Invalid ${name} value`);
+    }
+
+    setLoginData({
+      ...loginData,
+      [name]: {
+        ...loginData[name],
+        value: value,
+        errors: newErrors,
+      },
+    });
+  };
+
   return (
     <Container>
       <Form>
         <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" name="name" placeholder="Enter name" onBlur={validateInput} />
+            <ErrorMessages errors={loginData.name.errors} />
+          </Form.Group>
+
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onBlur={validateInput}
+            />
+            <ErrorMessages errors={loginData.email.errors} />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formGridAddress1">
-            <Form.Label>Address</Form.Label>
-            <Form.Control placeholder="1234 Main St" />
+          <Form.Group className="mb-3" controlId="formGridBirthday">
+            <Form.Label>Birthday</Form.Label>
+            <Form.Control
+              type="date"
+              name="birthday"
+              onBlur={validateInput}
+            />
+            <ErrorMessages errors={loginData.birthday.errors} />
           </Form.Group>
         </Row>
 

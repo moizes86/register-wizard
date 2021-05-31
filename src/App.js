@@ -11,6 +11,8 @@ function App() {
   return <div className="App">
     <Form>
       <p>yakov</p>
+      <p>kassa</p>
+
     </Form>
   </div>;
 }

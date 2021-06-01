@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
-const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
+const NameEmailBirthday = ({ loginData, validateInput }) => {
   const errors =
     !loginData.name.errors.length &&
     !loginData.email.errors.length &&

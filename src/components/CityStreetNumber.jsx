@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
+const CityStreetNumber = ({ loginData, validateInput }) => {
   const errors =
     !loginData.city.errors.length &&
     !loginData.street.errors.length &&
@@ -55,13 +55,13 @@ const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
       <Row>
         <Col md={4}>
           <Link to="/">
-            <Button onClick={""}> go back </Button>{" "}
+            <Button> go back </Button>{" "}
           </Link>
         </Col>
         <Col md={{ span: 4, offset: 4 }}>
           <Link to="imageAndHobby">
             {errors ? (
-              <Button onClick={""}>Next</Button>
+              <Button>Next</Button>
             ) : (
               <Button disabled>Next</Button>
             )}

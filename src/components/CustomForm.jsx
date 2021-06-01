@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./CustomForm.css";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -69,8 +69,8 @@ const CustomForm = () => {
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }
-    if (name == "number" && value != "") {
-      if (value == 0 || value < 0) {
+    if (name === "number" && value) {
+      if (value === 0 || value < 0) {
         newErrors.push(`${name} should be more than 0`);
       }
     }
@@ -89,8 +89,6 @@ const CustomForm = () => {
     });
   };
 
-  const [isSection2, setIsSection2] = useState(false);
-
   return (
     <Form>
       <Container>
@@ -98,14 +96,12 @@ const CustomForm = () => {
           <NameEmailBirthday
             loginData={loginData}
             validateInput={validateInput}
-            setIsSection2={setIsSection2}
           />
         </Route>
         <Route exact path="/cityStreetNumber">
           <CityStreetNumber
             loginData={loginData}
             validateInput={validateInput}
-            setIsSection2={setIsSection2}
           />
         </Route>
         <Route exact path="/imageAndHobby">

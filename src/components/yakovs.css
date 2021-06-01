@@ -1,0 +1,8 @@
+.redInput{
+    background-color:rgb(244, 63, 63);
+}
+span{
+    color: red;
+    font-size: 12px;
+    display: block;
+  }

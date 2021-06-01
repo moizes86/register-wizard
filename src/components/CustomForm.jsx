@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import "./CustomForm.css";
-import Container from "react-bootstrap/Container";
 
 import Form from "react-bootstrap/Form";
 import NameEmailBirthday from "./NameEmailBirthday";
 import CityStreetNumber from "./CityStreetNumber";
-import ImageAndHobby from "./ImageAndHobby.js";
+import ImageAndHobby from "./ImageAndHobby";
 
 const CustomForm = () => {
   const [loginData, setLoginData] = useState({
@@ -54,7 +53,24 @@ const CustomForm = () => {
     },
 
     number: {
-      value: true,
+      value: '',
+      errors: [],
+      classes: "",
+      validations: {
+        required: false,
+      },
+    },
+    image: {
+      value: '',
+      errors: [],
+      classes: "",
+      validations: {
+        required: true,
+        pattern: /(https?:\/\/.*\.(?:png|jpg))$/
+      },
+    },
+    hobbies: {
+      value: '',
       errors: [],
       classes: "",
       validations: {
@@ -70,8 +86,8 @@ const CustomForm = () => {
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }
-    if (name == "number" && value != "") {
-      if (value == 0 || value < 0) {
+    if (name === "number" && value) {
+      if (value === 0 || value < 0) {
         newErrors.push(`${name} should be more than 0`);
       }
     }
@@ -90,29 +106,23 @@ const CustomForm = () => {
     });
   };
 
-  const [isSection2, setIsSection2] = useState(false);
-
   return (
     <Form>
-      <Container>
         <Route exact path="/">
           <NameEmailBirthday
             loginData={loginData}
             validateInput={validateInput}
-            setIsSection2={setIsSection2}
           />
         </Route>
         <Route exact path="/cityStreetNumber">
           <CityStreetNumber
             loginData={loginData}
             validateInput={validateInput}
-            setIsSection2={setIsSection2}
           />
         </Route>
         <Route exact path="/imageAndHobby">
           <ImageAndHobby validateInput={validateInput} />
         </Route>
-      </Container>
     </Form>
   );
 };

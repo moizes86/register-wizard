@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
+const CityStreetNumber = ({ loginData, validateInput }) => {
   const errors =
     !loginData.city.errors.length &&
     !loginData.street.errors.length &&
@@ -58,23 +58,17 @@ const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
           <Row>
             <Col md={4}>
               <Link to="/">
-                <Button onClick={""}>Previous</Button>
+                <Button>Previous</Button>
               </Link>
             </Col>
             <Col md={{ span: 4, offset: 4 }}>
               <Link to="imageAndHobby">
-                {errors ? (
-                  <Button onClick={""}>Next</Button>
-                ) : (
-                  <Button disabled>Next</Button>
-                )}
+                {errors ? <Button>Next</Button> : <Button disabled>Next</Button>}
               </Link>
             </Col>
           </Row>
         </Card.Body>
-        <Card.Footer className="text-muted">
-          Jacob, Dor and Moshe are in the house
-        </Card.Footer>
+        <Card.Footer className="text-muted">Jacob, Dor and Moshe are in the house</Card.Footer>
       </Card>
     </div>
   );

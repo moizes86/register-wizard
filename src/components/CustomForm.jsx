@@ -1,13 +1,11 @@
 import React, { useState } from "react";
+import { Switch, Route } from "react-router-dom";
 import "./CustomForm.css";
-
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
 import NameEmailBirthday from "./NameEmailBirthday";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import CityStreetNumber from "./CityStreetNumber";
+import ImageAndHobby from "./ImageAndHobby.js";
 
 const CustomForm = () => {
   const [loginData, setLoginData] = useState({
@@ -16,7 +14,6 @@ const CustomForm = () => {
       errors: [],
       validations: {
         required: true,
-        pattern: /(^[a-zA-Z][0-9a-zA-Z]{2,}.[a-zA-Z][0-9a-zA-Z]{2,})/g,
       },
     },
 
@@ -38,7 +35,7 @@ const CustomForm = () => {
     },
 
     city: {
-      value: '',
+      value: "",
       errors: [],
       classes: "",
       validations: {
@@ -47,7 +44,7 @@ const CustomForm = () => {
     },
 
     street: {
-      value: '',
+      value: "",
       errors: [],
       classes: "",
       validations: {
@@ -94,49 +91,29 @@ const CustomForm = () => {
 
   const [isSection2, setIsSection2] = useState(false);
 
-  // const validateInput = ({ target: { value, name } }) => {
-  //   const newErrors = [];
-  //   const { validations } = loginData[name];
-
-  //   if (validations.required && !value) {
-  //     newErrors.push(`${name} is required`);
-  //   }
-
-  //   if (validations.pattern && !validations.pattern.test(value)) {
-  //     newErrors.push(`Invalid ${name} value`);
-  //   }
-
-  //   setLoginData({
-  //     ...loginData,
-  //     [name]: {
-  //       ...loginData[name],
-  //       value: value,
-  //       errors: newErrors,
-  //     },
-
-  //   });
-  // };
-
   return (
     <Form>
-      <NameEmailBirthday
-        loginData={loginData}
-        setLoginData={setLoginData}
-        validateInput={validateInput}
-        setIsSection2={setIsSection2}
-      />
-
-      {isSection2 && <p>Hey</p>}
-
-      <CityStreetNumber
-        loginData={loginData}
-        setLoginData={setLoginData}
-        validateInput={validateInput}
-      />
-
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <Container>
+        <Switch>
+          <Route exact path="/">
+            <NameEmailBirthday
+              loginData={loginData}
+              validateInput={validateInput}
+              setIsSection2={setIsSection2}
+            />
+          </Route>
+          <Route exact path="/cityStreetNumber">
+            <CityStreetNumber
+              loginData={loginData}
+              validateInput={validateInput}
+              setIsSection2={setIsSection2}
+            />
+          </Route>
+          <Route exact path="/imageAndHobby">
+            <ImageAndHobby validateInput={validateInput} />
+          </Route>
+        </Switch>
+      </Container>
     </Form>
   );
 };

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import ErrorMessages from "./ErrorMessages";
-
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
   const errors =
@@ -54,10 +54,18 @@ const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
 
       <Row>
         <Col md={4}>
-          <Button onClick={""}> go back </Button>{" "}
+          <Link to="/">
+            <Button onClick={""}> go back </Button>{" "}
+          </Link>
         </Col>
         <Col md={{ span: 4, offset: 4 }}>
-          {errors ? <Button onClick={""}>Next</Button> : <Button disabled>Next</Button>}
+          <Link to="imageAndHobby">
+            {errors ? (
+              <Button onClick={""}>Next</Button>
+            ) : (
+              <Button disabled>Next</Button>
+            )}
+          </Link>
         </Col>
       </Row>
     </div>

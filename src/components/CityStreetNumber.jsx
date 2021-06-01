@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
+  const info=localStorage.getItem("testObject")? JSON.parse(localStorage.getItem("testObject")):""
   const errors =
     !loginData.city.errors.length &&
     !loginData.street.errors.length &&
@@ -21,6 +22,7 @@ const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
         <Form.Group as={Col} controlId="formGridCity">
           <Form.Label>City</Form.Label>
           <Form.Control
+            defaultValue={info.city}
             className={`${loginData.city.classes}`}
             name="city"
             onBlur={validateInput}
@@ -32,6 +34,7 @@ const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Street</Form.Label>
           <Form.Control
+            defaultValue={info.street}
             className={`${loginData.street.classes}`}
             name="street"
             onBlur={validateInput}
@@ -43,6 +46,7 @@ const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
         <Form.Group as={Col} controlId="formGridZip">
           <Form.Label>Number</Form.Label>
           <Form.Control
+            defaultValue={info.number}
             className={`${loginData.street.classes}`}
             name="number"
             onBlur={validateInput}
@@ -69,7 +73,7 @@ const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
                 }
                 let obj2= JSON.parse(localStorage.getItem('testObject'));
                 localStorage.setItem('testObject', JSON.stringify({...obj,...obj2}));
-                
+
               }}>Next</Button>
             ) : (
               <Button disabled>Next</Button>

@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
+  const info=localStorage.getItem("testObject")? JSON.parse(localStorage.getItem("testObject")):""
   const errors =
     !loginData.name.errors.length &&
     !loginData.email.errors.length &&
@@ -22,6 +23,7 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
         <Form.Group as={Col} controlId="formGridName">
           <Form.Label>Name</Form.Label>
           <Form.Control
+            defaultValue={info.name}
             type="text"
             name="name"
             placeholder="Enter name"
@@ -34,6 +36,7 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control
+            defaultValue={info.email}
             type="email"
             name="email"
             placeholder="Enter email"
@@ -46,6 +49,7 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
         <Form.Group className="mb-3" controlId="formGridBirthday">
           <Form.Label>Birthday</Form.Label>
           <Form.Control
+            defaultValue={info.birthday}
             type="date"
             name="birthday"
             onBlur={validateInput}

@@ -7,7 +7,6 @@ function App() {
   return (
     <div className="App">
       <CustomForm />
-      <p>hello world</p>
     </div>
   );
 }

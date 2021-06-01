@@ -1,9 +1,19 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import NameEmailBirthday from "./name-email-birthday/NameEmailBirthday";
+=======
+import { Route } from "react-router-dom";
+import "./CustomForm.css";
+
+import Form from "react-bootstrap/Form";
+import NameEmailBirthday from "./NameEmailBirthday";
+import CityStreetNumber from "./CityStreetNumber";
+import ImageAndHobby from "./ImageAndHobby";
+>>>>>>> moshe
 
 const CustomForm = () => {
   const [loginData, setLoginData] = useState({
@@ -12,7 +22,6 @@ const CustomForm = () => {
       errors: [],
       validations: {
         required: true,
-        pattern: /(^[a-zA-Z][0-9a-zA-Z]{2,}.[a-zA-Z][0-9a-zA-Z]{2,})/g,
       },
     },
 
@@ -34,39 +43,44 @@ const CustomForm = () => {
     },
 
     city: {
-      value: null,
+      value: "",
       errors: [],
+      classes: "",
       validations: {
         required: true,
       },
     },
 
     street: {
-      value: null,
+      value: "",
       errors: [],
+      classes: "",
       validations: {
         required: true,
       },
     },
 
     number: {
-      value: null,
+      value: '',
       errors: [],
+      classes: "",
       validations: {
         required: false,
       },
     },
-
     image: {
-      value: null,
+      value: '',
       errors: [],
+      classes: "",
       validations: {
         required: true,
+        pattern: /(https?:\/\/.*\.(?:png|jpg))$/
       },
     },
     hobbies: {
-      value: null,
+      value: '',
       errors: [],
+      classes: "",
       validations: {
         required: false,
       },
@@ -82,7 +96,11 @@ const CustomForm = () => {
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }
-
+    if (name === "number" && value) {
+      if (value === 0 || value < 0) {
+        newErrors.push(`${name} should be more than 0`);
+      }
+    }
     if (validations.pattern && !validations.pattern.test(value)) {
       newErrors.push(`Invalid ${name} value`);
     }
@@ -93,11 +111,13 @@ const CustomForm = () => {
         ...loginData[name],
         value: value,
         errors: newErrors,
+        classes: newErrors.length ? "redInput" : "",
       },
     });
   };
 
   return (
+<<<<<<< HEAD
     <Container>
       <Form>
         <NameEmailBirthday
@@ -114,6 +134,25 @@ const CustomForm = () => {
         </Button>
       </Form>
     </Container>
+=======
+    <Form>
+        <Route exact path="/">
+          <NameEmailBirthday
+            loginData={loginData}
+            validateInput={validateInput}
+          />
+        </Route>
+        <Route exact path="/cityStreetNumber">
+          <CityStreetNumber
+            loginData={loginData}
+            validateInput={validateInput}
+          />
+        </Route>
+        <Route exact path="/imageAndHobby">
+          <ImageAndHobby validateInput={validateInput} />
+        </Route>
+    </Form>
+>>>>>>> moshe
   );
 };
 

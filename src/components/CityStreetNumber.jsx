@@ -61,7 +61,16 @@ const CityStreetNumber = ({ loginData, validateInput, setIsSection2 }) => {
         <Col md={{ span: 4, offset: 4 }}>
           <Link to="imageAndHobby">
             {errors ? (
-              <Button onClick={""}>Next</Button>
+              <Button onClick={()=>{
+                const obj = {
+                  city: loginData.city.value,
+                  street:loginData.street.value,
+                  number:loginData.number.value
+                }
+                let obj2= JSON.parse(localStorage.getItem('testObject'));
+                localStorage.setItem('testObject', JSON.stringify({...obj,...obj2}));
+                
+              }}>Next</Button>
             ) : (
               <Button disabled>Next</Button>
             )}

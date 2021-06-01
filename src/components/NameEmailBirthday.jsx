@@ -14,7 +14,8 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
     loginData.name.value.length &&
     loginData.email.value.length &&
     loginData.birthday.value.length;
-
+    
+    
   return (
     <div>
       <Row className="mb-3">
@@ -55,8 +56,16 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
       </Row>
 
       {errors ? (
+
         <Link to="/cityStreetNumber">
-          <Button>Next</Button>
+          <Button onClick={()=>{
+            const obj = {
+              name: loginData.name.value,
+              email:loginData.email.value,
+              birthday:loginData.birthday.value
+            }
+            localStorage.setItem('testObject', JSON.stringify(obj));
+          }}>Next</Button>
         </Link>
       ) : (
         <Button disabled>Next</Button>

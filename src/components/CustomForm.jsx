@@ -1,11 +1,4 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
-import NameEmailBirthday from "./name-email-birthday/NameEmailBirthday";
-=======
 import { Route } from "react-router-dom";
 import "./CustomForm.css";
 
@@ -13,7 +6,6 @@ import Form from "react-bootstrap/Form";
 import NameEmailBirthday from "./NameEmailBirthday";
 import CityStreetNumber from "./CityStreetNumber";
 import ImageAndHobby from "./ImageAndHobby";
->>>>>>> moshe
 
 const CustomForm = () => {
   const [loginData, setLoginData] = useState({
@@ -117,24 +109,6 @@ const CustomForm = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <Container>
-      <Form>
-        <NameEmailBirthday
-          loginData={loginData}
-          setLoginData={setLoginData}
-          validateInput={validateInput}
-          setIsSection2={setIsSection2}
-        />
-
-        {isSection2 && <p>Hey</p>}
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </Container>
-=======
     <Form>
         <Route exact path="/">
           <NameEmailBirthday
@@ -152,7 +126,6 @@ const CustomForm = () => {
           <ImageAndHobby validateInput={validateInput} />
         </Route>
     </Form>
->>>>>>> moshe
   );
 };
 

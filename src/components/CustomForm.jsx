@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import ErrorMessage from './ErrorMessages';
-
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import InputGroup from "react-bootstrap/InputGroup";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import { Switch, Route } from "react-router-dom";
+import "./CustomForm.css";
 import Container from "react-bootstrap/Container";
-import ErrorMessages from "./ErrorMessages";
+import Form from "react-bootstrap/Form";
+import NameEmailBirthday from "./NameEmailBirthday";
+import CityStreetNumber from "./CityStreetNumber";
+import ImageAndHobby from "./ImageAndHobby.js";
 
 const CustomForm = () => {
   const [loginData, setLoginData] = useState({
@@ -17,7 +14,6 @@ const CustomForm = () => {
       errors: [],
       validations: {
         required: true,
-        pattern: /(^[a-zA-Z][0-9a-zA-Z]{2,}.[a-zA-Z][0-9a-zA-Z]{2,})/g,
       },
     },
 
@@ -31,7 +27,7 @@ const CustomForm = () => {
     },
 
     birthday: {
-      value: null,
+      value: "",
       errors: [],
       validations: {
         required: true,
@@ -39,39 +35,27 @@ const CustomForm = () => {
     },
 
     city: {
-      value: null,
+      value: "",
       errors: [],
+      classes: "",
       validations: {
         required: true,
       },
     },
 
     street: {
-      value: null,
+      value: "",
       errors: [],
+      classes: "",
       validations: {
         required: true,
       },
     },
 
     number: {
-      value: null,
+      value: true,
       errors: [],
-      validations: {
-        required: false,
-      },
-    },
-
-    image: {
-      value: null,
-      errors: [],
-      validations: {
-        required: true,
-      },
-    },
-    hobbies: {
-      value: null,
-      errors: [],
+      classes: "",
       validations: {
         required: false,
       },
@@ -79,15 +63,17 @@ const CustomForm = () => {
   });
 
   const validateInput = ({ target: { value, name } }) => {
-      console.log(name);
-      console.log(value);
     const newErrors = [];
     const { validations } = loginData[name];
 
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }
-
+    if (name == "number" && value != "") {
+      if (value == 0 || value < 0) {
+        newErrors.push(`${name} should be more than 0`);
+      }
+    }
     if (validations.pattern && !validations.pattern.test(value)) {
       newErrors.push(`Invalid ${name} value`);
     }
@@ -98,83 +84,35 @@ const CustomForm = () => {
         ...loginData[name],
         value: value,
         errors: newErrors,
+        classes: newErrors.length ? "redInput" : "",
       },
     });
   };
 
+  const [isSection2, setIsSection2] = useState(false);
+
   return (
-    <Container>
-      <Form>
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridName">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="text" name="name" placeholder="Enter name" onBlur={validateInput} />
-            <ErrorMessages errors={loginData.name.errors} />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              onBlur={validateInput}
-            />
-            <ErrorMessages errors={loginData.email.errors} />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formGridBirthday">
-            <Form.Label>Birthday</Form.Label>
-            <Form.Control
-              type="date"
-              name="birthday"
-              onBlur={validateInput}
-            />
-            <ErrorMessages errors={loginData.birthday.errors} />
-          </Form.Group>
-        </Row>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridCity">
-            <Form.Label>City</Form.Label>
-            <Form.Control />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>State</Form.Label>
-            <Form.Control as="select" defaultValue="Choose...">
-              <option>Choose...</option>
-              <option>...</option>
-            </Form.Control>
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridZip">
-            <Form.Label>Zip</Form.Label>
-            <Form.Control />
-          </Form.Group>
-        </Row>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-
-          <Form.Group as={Col} controlId="formGridPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-        </Row>
-
-        <Form.Group className="mb-3" id="formGridCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </Container>
+    <Form>
+      <Container>
+        <Route exact path="/">
+          <NameEmailBirthday
+            loginData={loginData}
+            validateInput={validateInput}
+            setIsSection2={setIsSection2}
+          />
+        </Route>
+        <Route exact path="/cityStreetNumber">
+          <CityStreetNumber
+            loginData={loginData}
+            validateInput={validateInput}
+            setIsSection2={setIsSection2}
+          />
+        </Route>
+        <Route exact path="/imageAndHobby">
+          <ImageAndHobby validateInput={validateInput} />
+        </Route>
+      </Container>
+    </Form>
   );
 };
 

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import "./CustomForm.css";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import NameEmailBirthday from "./name-email-birthday/NameEmailBirthday";
+import NameEmailBirthday from "./NameEmailBirthday";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import CityStreetNumber from "./CityStreetNumber";
 
 const CustomForm = () => {
   const [loginData, setLoginData] = useState({
@@ -34,46 +38,32 @@ const CustomForm = () => {
     },
 
     city: {
-      value: null,
+      value: '',
       errors: [],
+      classes: "",
       validations: {
         required: true,
       },
     },
 
     street: {
-      value: null,
+      value: '',
       errors: [],
+      classes: "",
       validations: {
         required: true,
       },
     },
 
     number: {
-      value: null,
+      value: true,
       errors: [],
-      validations: {
-        required: false,
-      },
-    },
-
-    image: {
-      value: null,
-      errors: [],
-      validations: {
-        required: true,
-      },
-    },
-    hobbies: {
-      value: null,
-      errors: [],
+      classes: "",
       validations: {
         required: false,
       },
     },
   });
-
-  const [isSection2, setIsSection2] = useState(false)
 
   const validateInput = ({ target: { value, name } }) => {
     const newErrors = [];
@@ -82,7 +72,11 @@ const CustomForm = () => {
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }
-
+    if (name == "number" && value != "") {
+      if (value == 0 || value < 0) {
+        newErrors.push(`${name} should be more than 0`);
+      }
+    }
     if (validations.pattern && !validations.pattern.test(value)) {
       newErrors.push(`Invalid ${name} value`);
     }
@@ -93,28 +87,57 @@ const CustomForm = () => {
         ...loginData[name],
         value: value,
         errors: newErrors,
+        classes: newErrors.length ? "redInput" : "",
       },
-      
     });
   };
 
+  const [isSection2, setIsSection2] = useState(false);
+
+  // const validateInput = ({ target: { value, name } }) => {
+  //   const newErrors = [];
+  //   const { validations } = loginData[name];
+
+  //   if (validations.required && !value) {
+  //     newErrors.push(`${name} is required`);
+  //   }
+
+  //   if (validations.pattern && !validations.pattern.test(value)) {
+  //     newErrors.push(`Invalid ${name} value`);
+  //   }
+
+  //   setLoginData({
+  //     ...loginData,
+  //     [name]: {
+  //       ...loginData[name],
+  //       value: value,
+  //       errors: newErrors,
+  //     },
+
+  //   });
+  // };
+
   return (
-    <Container>
-      <Form>
-        <NameEmailBirthday
-          loginData={loginData}
-          setLoginData={setLoginData}
-          validateInput={validateInput}
-          setIsSection2={setIsSection2}
-        />
+    <Form>
+      <NameEmailBirthday
+        loginData={loginData}
+        setLoginData={setLoginData}
+        validateInput={validateInput}
+        setIsSection2={setIsSection2}
+      />
 
-        {isSection2 && <p>Hey</p>}
+      {isSection2 && <p>Hey</p>}
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </Container>
+      <CityStreetNumber
+        loginData={loginData}
+        setLoginData={setLoginData}
+        validateInput={validateInput}
+      />
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 };
 

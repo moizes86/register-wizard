@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ErrorMessages from "../ErrorMessages";
+import ErrorMessages from "./ErrorMessages";
 
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -20,7 +20,13 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridName">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" name="name" placeholder="Enter name" onBlur={validateInput} />
+          <Form.Control
+            type="text"
+            name="name"
+            placeholder="Enter name"
+            onBlur={validateInput}
+            className={`${loginData.name.classes}`}
+          />
           <ErrorMessages errors={loginData.name.errors} />
         </Form.Group>
 
@@ -31,13 +37,19 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
             name="email"
             placeholder="Enter email"
             onBlur={validateInput}
+            className={`${loginData.email.classes}`}
           />
           <ErrorMessages errors={loginData.email.errors} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formGridBirthday">
           <Form.Label>Birthday</Form.Label>
-          <Form.Control type="date" name="birthday" onBlur={validateInput} />
+          <Form.Control
+            type="date"
+            name="birthday"
+            onBlur={validateInput}
+            className={`${loginData.birthday.classes}`}
+          />
           <ErrorMessages errors={loginData.birthday.errors} />
         </Form.Group>
       </Row>

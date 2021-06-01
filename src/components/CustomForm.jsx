@@ -94,25 +94,23 @@ const CustomForm = () => {
   return (
     <Form>
       <Container>
-        <Switch>
-          <Route exact path="/">
-            <NameEmailBirthday
-              loginData={loginData}
-              validateInput={validateInput}
-              setIsSection2={setIsSection2}
-            />
-          </Route>
-          <Route exact path="/cityStreetNumber">
-            <CityStreetNumber
-              loginData={loginData}
-              validateInput={validateInput}
-              setIsSection2={setIsSection2}
-            />
-          </Route>
-          <Route exact path="/imageAndHobby">
-            <ImageAndHobby validateInput={validateInput} />
-          </Route>
-        </Switch>
+        <Route exact path="/">
+          <NameEmailBirthday
+            loginData={loginData}
+            validateInput={validateInput}
+            setIsSection2={setIsSection2}
+          />
+        </Route>
+        <Route exact path="/cityStreetNumber">
+          <CityStreetNumber
+            loginData={loginData}
+            validateInput={validateInput}
+            setIsSection2={setIsSection2}
+          />
+        </Route>
+        <Route exact path="/imageAndHobby">
+          <ImageAndHobby validateInput={validateInput} />
+        </Route>
       </Container>
     </Form>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 import ErrorMessages from "./ErrorMessages";
-import { Route, Link } from "react-router-dom";
-import CityStreetNumber from "./CityStreetNumber";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -62,14 +61,6 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
       ) : (
         <Button disabled>Next</Button>
       )}
-
-      <Route exact path="/cityStreetNumber">
-        <CityStreetNumber
-          loginData={loginData}
-          validateInput={validateInput}
-          setIsSection2={setIsSection2}
-        />
-      </Route>
     </div>
   );
 };

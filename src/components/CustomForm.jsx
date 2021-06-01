@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./CustomForm.css";
 import Container from "react-bootstrap/Container";
+
 import Form from "react-bootstrap/Form";
 import NameEmailBirthday from "./NameEmailBirthday";
 import CityStreetNumber from "./CityStreetNumber";

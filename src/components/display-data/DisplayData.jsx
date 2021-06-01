@@ -29,7 +29,7 @@ const DisplayData = () => {
 
   return (
     <div className="display-data">
-      <h1>HEY</h1>
+        <h1>Details</h1>
       {data.map((el, i) => {
         return (
           <ListGroup horizontal={"lg"} className="my-4" key={`${el.name}- ${i}`}>

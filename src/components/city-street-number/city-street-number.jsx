@@ -5,13 +5,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 
 const CityStreetNumber = ({ loginData, validateInput }) => {
+<<<<<<< HEAD
   const obj = localStorage.getItem("user2")
     ? JSON.parse(localStorage.getItem("user2"))
     : "";
     
+=======
+  const obj = localStorage.getItem("user2") ? JSON.parse(localStorage.getItem("user2")) : "";
+>>>>>>> 5be3b4dc506a7fd296fb85de3cdc39913aab0a46
   const errors =
     !loginData.city.errors.length &&
     !loginData.street.errors.length &&
@@ -29,69 +34,69 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
   };
 
   return (
-    <div>
+    <Container>
       <Card className="text-center">
         <Card.Header>Register Wizard</Card.Header>
         <Card.Body>
           <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridCity">
-              <Form.Label>City</Form.Label>
-              <Form.Control
-                className={`${loginData.city.classes}`}
-                name="city"
-                onBlur={validateInput}
-                defaultValue={obj.city}
-                placeholder="Enter City"
-              />
-              <ErrorMessages errors={loginData.city.errors} />
-            </Form.Group>
+            <Col>
+              <Form.Group as={Col} controlId="formGridCity">
+                <Form.Label>City</Form.Label>
+                <Form.Control
+                  className={`${loginData.city.classes}`}
+                  name="city"
+                  onBlur={validateInput}
+                  defaultValue={obj.city}
+                  placeholder="Enter City"
+                />
+                <ErrorMessages errors={loginData.city.errors} />
+              </Form.Group>
+            </Col>
 
-            <Form.Group as={Col} controlId="formGridState">
-              <Form.Label>Street</Form.Label>
-              <Form.Control
-                className={`${loginData.street.classes}`}
-                name="street"
-                defaultValue={obj.street}
-                onBlur={validateInput}
-                placeholder="Enter Street"
-              />
-              <ErrorMessages errors={loginData.street.errors} />
-            </Form.Group>
+            <Col>
+              <Form.Group as={Col} controlId="formGridState">
+                <Form.Label>Street</Form.Label>
+                <Form.Control
+                  className={`${loginData.street.classes}`}
+                  name="street"
+                  defaultValue={obj.street}
+                  onBlur={validateInput}
+                  placeholder="Enter Street"
+                />
+                <ErrorMessages errors={loginData.street.errors} />
+              </Form.Group>
+            </Col>
 
-            <Form.Group as={Col} controlId="formGridZip">
-              <Form.Label>Number</Form.Label>
-              <Form.Control
-                className={`${loginData.number.classes}`}
-                name="number"
-                defaultValue={obj.number}
-                onBlur={validateInput}
-                placeholder="Enter Number"
-              />
-              <ErrorMessages errors={loginData.number.errors} />
-            </Form.Group>
+            <Col xs={2}>
+              <Form.Group as={Col} controlId="formGridZip">
+                <Form.Label>Number</Form.Label>
+                <Form.Control
+                  className={`${loginData.number.classes}`}
+                  name="number"
+                  defaultValue={obj.number}
+                  onBlur={validateInput}
+                  placeholder=""
+                />
+                <ErrorMessages errors={loginData.number.errors} />
+              </Form.Group>
+            </Col>
           </Row>
           <Row>
             <Col md={4}>
               <Link to="/">
-                <Button >Previous</Button>
+                <Button>Previous</Button>
               </Link>
             </Col>
             <Col md={{ span: 4, offset: 4 }}>
               <Link to="image-and-hobbies">
-                {errors ? (
-                  <Button onClick={setInfo}>Next</Button>
-                ) : (
-                  <Button disabled>Next</Button>
-                )}
+                {errors ? <Button onClick={setInfo}>Next</Button> : <Button disabled>Next</Button>}
               </Link>
             </Col>
           </Row>
         </Card.Body>
-        <Card.Footer className="text-muted">
-          Jacob, Dor and Moshe are in the house
-        </Card.Footer>
+        <Card.Footer className="text-muted">Jacob, Dor and Moshe are in the house</Card.Footer>
       </Card>
-    </div>
+    </Container>
   );
 };
 

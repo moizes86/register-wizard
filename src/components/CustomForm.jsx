@@ -17,7 +17,6 @@ const CustomForm = () => {
         required: true,
       },
     },
-
     email: {
       value: "",
       errors: [],
@@ -26,7 +25,6 @@ const CustomForm = () => {
         pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       },
     },
-
     birthday: {
       value: "",
       errors: [],
@@ -34,7 +32,6 @@ const CustomForm = () => {
         required: true,
       },
     },
-
     city: {
       value: "",
       errors: [],
@@ -43,7 +40,6 @@ const CustomForm = () => {
         required: true,
       },
     },
-
     street: {
       value: "",
       errors: [],
@@ -52,7 +48,6 @@ const CustomForm = () => {
         required: true,
       },
     },
-
     number: {
       value: "",
       errors: [],

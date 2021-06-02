@@ -6,7 +6,18 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
-const ImageAndHobby = ({ validateInput }) => {
+const ImageAndHobby = ({ validateInput, loginData }) => {
+  const obj = localStorage.getItem("user3")
+    ? JSON.parse(localStorage.getItem("user3"))
+    : "";
+
+  const setInfo = () => {
+    const obj = {
+      name: loginData.image.value,
+      email: loginData.email.value,
+    };
+    localStorage.setItem("user3", JSON.stringify(obj));
+  };
   return (
     <>
       <Card className="text-center">

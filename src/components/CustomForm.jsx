@@ -77,6 +77,25 @@ const CustomForm = () => {
         required: false,
       },
     },
+
+    image: {
+      value: true,
+      errors: [],
+      classes: "",
+      validations: {
+        required: true,
+        pattern: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g,
+      },
+    },
+
+    hobby: {
+      value: true,
+      errors: [],
+      classes: "",
+      validations: {
+        required: false,
+      },
+    },
   });
 
   const [isSection2, setIsSection2] = useState(false)

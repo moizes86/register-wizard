@@ -8,13 +8,24 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 const CityStreetNumber = ({ loginData, validateInput }) => {
+  const obj = localStorage.getItem("user2")
+    ? JSON.parse(localStorage.getItem("user2"))
+    : "";
   const errors =
     !loginData.city.errors.length &&
     !loginData.street.errors.length &&
     !loginData.number.errors.length &&
     loginData.city.value.length &&
-    loginData.street.value.length &&
-    loginData.number.value.length;
+    loginData.street.value.length;
+
+  const setInfo = () => {
+    const obj = {
+      city: loginData.city.value,
+      street: loginData.street.value,
+      number: loginData.number.value,
+    };
+    localStorage.setItem("user2", JSON.stringify(obj));
+  };
 
   return (
     <div>
@@ -28,6 +39,7 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
                 className={`${loginData.city.classes}`}
                 name="city"
                 onBlur={validateInput}
+                defaultValue={obj.city}
                 placeholder="Enter City"
               />
               <ErrorMessages errors={loginData.city.errors} />
@@ -38,6 +50,7 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
               <Form.Control
                 className={`${loginData.street.classes}`}
                 name="street"
+                defaultValue={obj.street}
                 onBlur={validateInput}
                 placeholder="Enter Street"
               />
@@ -49,6 +62,7 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
               <Form.Control
                 className={`${loginData.street.classes}`}
                 name="number"
+                defaultValue={obj.number}
                 onBlur={validateInput}
                 placeholder="Enter Number"
               />
@@ -63,7 +77,11 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
             </Col>
             <Col md={{ span: 4, offset: 4 }}>
               <Link to="imageAndHobby">
-                {errors ? <Button>Next</Button> : <Button disabled>Next</Button>}
+                {errors ? (
+                  <Button onClick={setInfo}>Next</Button>
+                ) : (
+                  <Button disabled>Next</Button>
+                )}
               </Link>
             </Col>
           </Row>

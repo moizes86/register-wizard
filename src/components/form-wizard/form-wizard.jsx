@@ -84,9 +84,6 @@ const FormWizrad = () => {
   const validateInput = ({ target: { value, name } }) => {
     const newErrors = [];
     const { validations } = loginData[name];
-    if(name == "image"){
-      console.log(`name: ${name}, value;${typeof value}`)
-    }
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }

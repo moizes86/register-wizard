@@ -67,7 +67,8 @@ const FormWizrad = () => {
       classes: "",
       validations: {
         required: true,
-        pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
+        pattern:
+          /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
       },
     },
 
@@ -84,10 +85,11 @@ const FormWizrad = () => {
   const validateInput = ({ target: { value, name } }) => {
     const newErrors = [];
     const { validations } = loginData[name];
+
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }
-    
+
     if (name == "number" && value != "") {
       if (value == 0 || value < 0) {
         newErrors.push(`${name} should be more than 0`);
@@ -96,7 +98,6 @@ const FormWizrad = () => {
     if (validations.pattern && !validations.pattern.test(value)) {
       newErrors.push(`Invalid ${name} value`);
     }
-    
 
     setLoginData({
       ...loginData,
@@ -107,26 +108,23 @@ const FormWizrad = () => {
         classes: newErrors.length ? "redInput" : "",
       },
     });
-    
   };
-
- 
 
   return (
     <Form>
       <Switch>
-          <Route exact path="/">
-            <NameEmailBirthday loginData={loginData} validateInput={validateInput} />
-          </Route>
-          <Route exact path="/city-street-number">
-            <CityStreetNumber loginData={loginData} validateInput={validateInput} />
-          </Route>
-          <Route exact path="/image-and-hobbies">
-            <ImageAndHobbies loginData={loginData} validateInput={validateInput} />
-          </Route>
-          <Route exact path="/display-data">
-            <DisplayData />
-          </Route>
+        <Route exact path="/">
+          <NameEmailBirthday loginData={loginData} validateInput={validateInput} />
+        </Route>
+        <Route exact path="/city-street-number">
+          <CityStreetNumber loginData={loginData} validateInput={validateInput} />
+        </Route>
+        <Route exact path="/image-and-hobbies">
+          <ImageAndHobbies loginData={loginData} validateInput={validateInput} />
+        </Route>
+        <Route exact path="/display-data">
+          <DisplayData />
+        </Route>
       </Switch>
     </Form>
   );

@@ -26,7 +26,6 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
 
   function handleChange({ target: { name, value } }) {
     loginData[name] = value;
-    
   }
 
   return (
@@ -42,10 +41,9 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
                   <Form.Control
                     name="image"
                     type="text"
-                    value={obj.image}
+                    defaultValue={obj.image}
                     placeholder="Enter image url"
                     onBlur={validateInput}
-                    onChange={handleChange}
                     className={loginData.image.classes}
                   />
                 </Form.Group>
@@ -74,13 +72,17 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
                 </Link>
               </Col>
               <Col md={{ span: 4, offset: 4 }}>
-                <Button
-                  onClick={() => {
-                    setInfo();
-                  }}
-                >
-                  Display
-                </Button>
+                {errors ? (
+                  <Button
+                    onClick={() => {
+                      setInfo();
+                    }}
+                  >
+                    Display
+                  </Button>
+                ) : (
+                  <Button disabled>Display</Button>
+                )}
               </Col>
             </Row>
           </Card.Body>

@@ -9,9 +9,7 @@ import { Link } from "react-router-dom";
 import FormErrorMessages from "../form-error-messages/form-error-messages";
 
 const ImageAndHobbies = ({ validateInput, loginData }) => {
-  const obj = localStorage.getItem("user3")
-    ? JSON.parse(localStorage.getItem("user3"))
-    : "";
+  const obj = localStorage.getItem("user3") ? JSON.parse(localStorage.getItem("user3")) : "";
 
   const errors =
     !loginData.image.errors.length &&
@@ -26,8 +24,8 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
     localStorage.setItem("user3", JSON.stringify(obj));
   };
 
-  const showCard = () => {
-    
+  function handleChange({ target: { name, value } }) {
+    loginData[name] = value;
   }
 
   return (
@@ -43,9 +41,10 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
                   <Form.Control
                     name="image"
                     type="text"
-                    defaultValue={obj.image}
+                    value={obj.image}
                     placeholder="Enter image url"
                     onBlur={validateInput}
+                    onChange={handleChange}
                     className={loginData.image.classes}
                   />
                 </Form.Group>
@@ -77,7 +76,6 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
                 <Button
                   onClick={() => {
                     setInfo();
-                    showCard();
                   }}
                 >
                   Display

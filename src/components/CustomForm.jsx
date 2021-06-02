@@ -63,7 +63,7 @@ const CustomForm = () => {
       classes: "",
       validations: {
         required: true,
-        pattern: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g,
+        // pattern: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g,
       },
     },
 

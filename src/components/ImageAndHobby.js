@@ -19,11 +19,12 @@ const ImageAndHobby = ({ validateInput, loginData }) => {
   //   loginData.image.value.length;
 
   const setInfo = () => {
-    const obj = {
-      image: loginData.image.value,
-      hobby: loginData.hobby.value,
-    };
-    localStorage.setItem("user3", JSON.stringify(obj));
+    console.log(loginData.image.value);
+    // const obj = {
+    //   image: loginData.image.value,
+    //   hobby: loginData.hobby.value,
+    // };
+    // localStorage.setItem("user3", JSON.stringify(obj));
   };
 
   const showCard = () => {};
@@ -40,7 +41,7 @@ const ImageAndHobby = ({ validateInput, loginData }) => {
                 <Form.Control
                   name="image"
                   type="text"
-                  defaultValue={obj.image}
+                  defaultValue={loginData.image.value}
                   placeholder="Enter image url"
                   onBlur={validateInput}
                 />

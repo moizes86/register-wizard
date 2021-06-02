@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 import FormErrorMessages from "../form-error-messages/form-error-messages";
 
 const ImageAndHobbies = ({ validateInput, loginData }) => {
-  const obj = localStorage.getItem("user3")
-    ? JSON.parse(localStorage.getItem("user3"))
-    : "";
+  const obj = localStorage.getItem("user3") ? JSON.parse(localStorage.getItem("user3")) : "";
 
-  const errors = !loginData.image.errors.length && loginData.image.value.length;
+  const errors =
+    !loginData.image.errors.length &&
+    !loginData.hobbies.errors.length &&
+    loginData.image.value.length;
 
   const setInfo = () => {
     const obj = {
@@ -23,7 +24,10 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
     localStorage.setItem("user3", JSON.stringify(obj));
   };
 
-  const showCard = () => {};
+  function handleChange({ target: { name, value } }) {
+    loginData[name] = value;
+    
+  }
 
   return (
     <>
@@ -38,9 +42,10 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
                   <Form.Control
                     name="image"
                     type="text"
-                    defaultValue={obj.image}
+                    value={obj.image}
                     placeholder="Enter image url"
                     onBlur={validateInput}
+                    onChange={handleChange}
                     className={loginData.image.classes}
                   />
                 </Form.Group>
@@ -68,26 +73,18 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
                   </Button>
                 </Link>
               </Col>
-
               <Col md={{ span: 4, offset: 4 }}>
-                {errors ? (
-                  <Button
-                    onClick={() => {
-                      setInfo();
-                      showCard();
-                    }}
-                  >
-                    Display
-                  </Button>
-                ) : (
-                  <Button disabled>Display</Button>
-                )}
+                <Button
+                  onClick={() => {
+                    setInfo();
+                  }}
+                >
+                  Display
+                </Button>
               </Col>
             </Row>
           </Card.Body>
-          <Card.Footer className="text-muted">
-            Moshe, Jacob and Dor are in the house
-          </Card.Footer>
+          <Card.Footer className="text-muted">Moshe, Jacob and Dor are in the house</Card.Footer>
         </Card>
       </Container>
     </>

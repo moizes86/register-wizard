@@ -1,7 +1,7 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Image from 'react-bootstrap/Image';
-import './DisplayData.css';
+import './display-data.css';
 
 const DisplayData = () => {
   const data = [
@@ -32,7 +32,7 @@ const DisplayData = () => {
         <h1>Details</h1>
       {data.map((el, i) => {
         return (
-          <ListGroup horizontal={"lg"} className="my-4" key={`${el.name}- ${i}`}>
+          <ListGroup horizontal={"xl"} className="my-4" key={`${el.name}- ${i}`}>
             <ListGroup.Item>
               <Image src={el.img} className='display-data-img' rounded />
             </ListGroup.Item>

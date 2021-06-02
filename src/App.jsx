@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
+import FormWizrad from "./components/form-wizard/form-wizard";
 
-import CustomForm from "./components/CustomForm";
 
 function App() {
   return (
     <div className="App">
-      <CustomForm />
+      <FormWizrad />
     </div>
   );
 }

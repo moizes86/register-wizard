@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
-import "./CustomForm.css";
+import { Route, Switch } from "react-router-dom";
+
+// Components
+import NameEmailBirthday from "../name-email-birthday/name-email-birthday";
+import CityStreetNumber from "../city-street-number/city-street-number";
+import ImageAndHobbies from "../image-and-hobbies/image-and-hobbies";
+
+// Styles
+import "./form-wizard.css";
 import Container from "react-bootstrap/Container";
-
 import Form from "react-bootstrap/Form";
-import NameEmailBirthday from "./NameEmailBirthday";
-import CityStreetNumber from "./CityStreetNumber";
-import ImageAndHobby from "./ImageAndHobby.js";
+import DisplayData from "../display-data/display-data";
 
-const CustomForm = () => {
+const FormWizrad = () => {
   const [loginData, setLoginData] = useState({
     name: {
       value: "",
@@ -67,7 +71,7 @@ const CustomForm = () => {
       },
     },
 
-    hobby: {
+    hobbies: {
       value: "",
       errors: [],
       classes: "",
@@ -86,9 +90,7 @@ const CustomForm = () => {
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }
-    if(name == "image"){
-      console.log(newErrors.length)
-    }
+    
     if (name == "number" && value != "") {
       if (value == 0 || value < 0) {
         newErrors.push(`${name} should be more than 0`);
@@ -108,38 +110,29 @@ const CustomForm = () => {
         classes: newErrors.length ? "redInput" : "",
       },
     });
+    
   };
 
-  // const [details, setDetails] = useState({
-  //   phase1: false,
-  //   phase2: false,
-  //   phase3: false,
-  //   user: "",
-  // });
-
-  // const onSetDetailsHandler = (info) => {};
+ 
 
   return (
     <Form>
-      <Container>
-        <Route exact path="/">
-          <NameEmailBirthday
-            loginData={loginData}
-            validateInput={validateInput}
-          />
-        </Route>
-        <Route exact path="/cityStreetNumber">
-          <CityStreetNumber
-            loginData={loginData}
-            validateInput={validateInput}
-          />
-        </Route>
-        <Route exact path="/imageAndHobby">
-          <ImageAndHobby validateInput={validateInput} />
-        </Route>
-      </Container>
+      <Switch>
+          <Route exact path="/">
+            <NameEmailBirthday loginData={loginData} validateInput={validateInput} />
+          </Route>
+          <Route exact path="/city-street-number">
+            <CityStreetNumber loginData={loginData} validateInput={validateInput} />
+          </Route>
+          <Route exact path="/image-and-hobbies">
+            <ImageAndHobbies loginData={loginData} validateInput={validateInput} />
+          </Route>
+          <Route exact path="/display-data">
+            <DisplayData />
+          </Route>
+      </Switch>
     </Form>
   );
 };
 
-export default CustomForm;
+export default FormWizrad;

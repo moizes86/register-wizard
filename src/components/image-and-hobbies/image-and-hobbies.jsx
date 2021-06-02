@@ -26,6 +26,7 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
 
   function handleChange({ target: { name, value } }) {
     loginData[name] = value;
+    
   }
 
   return (

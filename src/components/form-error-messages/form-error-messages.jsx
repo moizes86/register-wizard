@@ -12,4 +12,8 @@ const FormErrorMessages = ({ errors }) => {
   );
 };
 
+<<<<<<< HEAD:src/components/ErrorMessages.jsx
+export default ErrorMessages;
+=======
 export default FormErrorMessages;
+>>>>>>> yakov:src/components/form-error-messages/form-error-messages.jsx

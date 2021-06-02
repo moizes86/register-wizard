@@ -53,24 +53,26 @@ const CustomForm = () => {
     },
 
     number: {
-      value: '',
+      value: "",
       errors: [],
       classes: "",
       validations: {
         required: false,
       },
     },
+
     image: {
-      value: '',
+      value: "",
       errors: [],
       classes: "",
       validations: {
         required: true,
-        pattern: /(https?:\/\/.*\.(?:png|jpg))$/
+        pattern: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g,
       },
     },
-    hobbies: {
-      value: '',
+
+    hobby: {
+      value: "",
       errors: [],
       classes: "",
       validations: {

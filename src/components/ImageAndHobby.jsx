@@ -6,7 +6,24 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
-const ImageAndHobby = ({ validateInput }) => {
+const ImageAndHobby = ({ validateInput, loginData }) => {
+  const obj = localStorage.getItem("user3")
+    ? JSON.parse(localStorage.getItem("user3"))
+    : "";
+
+  // const errors =
+  //   !loginData.image.errors.length &&
+  //   !loginData.hobby.errors.length &&
+  //   loginData.image.value.length;
+
+  const setInfo = () => {
+    const obj = {
+      image: loginData.image.value,
+      hobby: loginData.hobby.value,
+    };
+    localStorage.setItem("user3", JSON.stringify(obj));
+  };
+
   return (
     <>
       <Card className="text-center">
@@ -19,6 +36,7 @@ const ImageAndHobby = ({ validateInput }) => {
                 <Form.Control
                   name="image"
                   type="text"
+                  defaultValue={obj.image}
                   placeholder="Enter image url"
                   onBlur={validateInput}
                 />
@@ -31,6 +49,7 @@ const ImageAndHobby = ({ validateInput }) => {
                 <Form.Control
                   name="hobby"
                   type="text"
+                  defaultValue={obj.hobby}
                   placeholder="Enter Hobby"
                   onBlur={validateInput}
                 />
@@ -44,6 +63,9 @@ const ImageAndHobby = ({ validateInput }) => {
                   Previous
                 </Button>
               </Link>
+            </Col>
+            <Col md={{ span: 4, offset: 4 }}>
+              <Button onClick={setInfo}>Display</Button>
             </Col>
           </Row>
         </Card.Body>

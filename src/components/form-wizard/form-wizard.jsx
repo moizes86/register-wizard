@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
-import "./CustomForm.css";
+import { Route, Switch } from "react-router-dom";
+
+// Components
+import NameEmailBirthday from "../name-email-birthday/name-email-birthday";
+import CityStreetNumber from "../city-street-number/city-street-number";
+import ImageAndHobbies from '../image-and-hobbies/image-and-hobbies';
+
+// Styles
+import "./form-wizard.css";
 import Container from "react-bootstrap/Container";
-
 import Form from "react-bootstrap/Form";
-import NameEmailBirthday from "./NameEmailBirthday";
-import CityStreetNumber from "./CityStreetNumber";
-import ImageAndHobby from "./ImageAndHobby.js";
 
-const CustomForm = () => {
+const FormWizrad = () => {
   const [loginData, setLoginData] = useState({
     name: {
       value: "",
@@ -67,7 +70,7 @@ const CustomForm = () => {
       },
     },
 
-    hobby: {
+    hobbies: {
       value: "",
       errors: [],
       classes: "",
@@ -116,24 +119,20 @@ const CustomForm = () => {
   return (
     <Form>
       <Container>
-        <Route exact path="/">
-          <NameEmailBirthday
-            loginData={loginData}
-            validateInput={validateInput}
-          />
-        </Route>
-        <Route exact path="/cityStreetNumber">
-          <CityStreetNumber
-            loginData={loginData}
-            validateInput={validateInput}
-          />
-        </Route>
-        <Route exact path="/imageAndHobby">
-          <ImageAndHobby validateInput={validateInput} />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <NameEmailBirthday loginData={loginData} validateInput={validateInput} />
+          </Route>
+          <Route exact path="/city-street-number">
+            <CityStreetNumber loginData={loginData} validateInput={validateInput} />
+          </Route>
+          <Route exact path="/image-and-hobbies">
+            <ImageAndHobbies loginData={loginData} validateInput={validateInput} />
+          </Route>
+        </Switch>
       </Container>
     </Form>
   );
 };
 
-export default CustomForm;
+export default FormWizrad;

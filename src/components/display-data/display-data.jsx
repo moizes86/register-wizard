@@ -1,7 +1,7 @@
 import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import Image from 'react-bootstrap/Image';
-import './DisplayData.css';
+import './display-data.css';
 
 const DisplayData = () => {
   const data = [

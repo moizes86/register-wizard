@@ -1,5 +1,5 @@
 import React from "react";
-import ErrorMessages from "./ErrorMessages";
+import ErrorMessages from "../form-error-messages/form-error-messages";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -60,7 +60,7 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Number</Form.Label>
               <Form.Control
-                className={`${loginData.street.classes}`}
+                className={`${loginData.number.classes}`}
                 name="number"
                 defaultValue={obj.number}
                 onBlur={validateInput}
@@ -72,11 +72,11 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
           <Row>
             <Col md={4}>
               <Link to="/">
-                <Button onClick={""}>Previous</Button>
+                <Button >Previous</Button>
               </Link>
             </Col>
             <Col md={{ span: 4, offset: 4 }}>
-              <Link to="imageAndHobby">
+              <Link to="image-and-hobbies">
                 {errors ? (
                   <Button onClick={setInfo}>Next</Button>
                 ) : (

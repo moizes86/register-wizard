@@ -1,7 +1,8 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
-const Card = () => {
+const MyCard = () => {
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Header>Featured</Card.Header>
@@ -14,4 +15,4 @@ const Card = () => {
   );
 };
 
-export default Cards;
+export default MyCard;

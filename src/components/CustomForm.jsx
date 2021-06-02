@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
+import { Route } from "react-router-dom";
+import "./CustomForm.css";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import ImageAndHobby from "./ImageAndHobby.js";
+
+import Form from "react-bootstrap/Form";
 import NameEmailBirthday from "./NameEmailBirthday";
 import CityStreetNumber from "./CityStreetNumber";
+import ImageAndHobby from "./ImageAndHobby.js";
 
 const CustomForm = () => {
   const [loginData, setLoginData] = useState({
@@ -13,7 +15,6 @@ const CustomForm = () => {
       errors: [],
       validations: {
         required: true,
-        pattern: /(^[a-zA-Z][0-9a-zA-Z]{2,}.[a-zA-Z][0-9a-zA-Z]{2,})/g,
       },
     },
     email: {
@@ -48,24 +49,28 @@ const CustomForm = () => {
       },
     },
     number: {
-      value: true,
+      value: "",
       errors: [],
       classes: "",
       validations: {
         required: false,
       },
     },
+
     image: {
-      value: null,
+      value: "",
       errors: [],
+      classes: "",
       validations: {
         required: true,
         pattern: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g,
       },
     },
+
     hobby: {
-      value: null,
+      value: "",
       errors: [],
+      classes: "",
       validations: {
         required: false,
       },
@@ -99,31 +104,24 @@ const CustomForm = () => {
     });
   };
 
-  const [isSection2, setIsSection2] = useState(false);
-
   return (
     <Form>
       <Container>
-        <NameEmailBirthday
-          loginData={loginData}
-          setLoginData={setLoginData}
-          validateInput={validateInput}
-          setIsSection2={setIsSection2}
-        />
-
-        {isSection2 && <p>Hey</p>}
-        {/* 
-        <CityStreetNumber
-          loginData={loginData}
-          setLoginData={setLoginData}
-          validateInput={validateInput}
-        />
-
-        <ImageAndHobby validateInput={validateInput} /> */}
-
-        {/* <Button variant="primary" type="submit">
-          Submit
-        </Button> */}
+        <Route exact path="/">
+          <NameEmailBirthday
+            loginData={loginData}
+            validateInput={validateInput}
+          />
+        </Route>
+        <Route exact path="/cityStreetNumber">
+          <CityStreetNumber
+            loginData={loginData}
+            validateInput={validateInput}
+          />
+        </Route>
+        <Route exact path="/imageAndHobby">
+          <ImageAndHobby validateInput={validateInput} />
+        </Route>
       </Container>
     </Form>
   );

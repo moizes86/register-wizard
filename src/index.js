@@ -9,8 +9,10 @@ import DisplayData from "./components/display-data/DisplayData";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
       <Switch>
+        <Route exact path="/">
+          <App />
+        </Route>
         <Route exact path="/display-data">
           <DisplayData />
         </Route>

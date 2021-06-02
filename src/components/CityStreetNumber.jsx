@@ -60,7 +60,7 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Number</Form.Label>
               <Form.Control
-                className={`${loginData.street.classes}`}
+                className={`${loginData.number.classes}`}
                 name="number"
                 defaultValue={obj.number}
                 onBlur={validateInput}

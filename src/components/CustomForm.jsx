@@ -63,7 +63,7 @@ const CustomForm = () => {
       classes: "",
       validations: {
         required: true,
-        pattern: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g,
+        pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
       },
     },
 
@@ -80,9 +80,14 @@ const CustomForm = () => {
   const validateInput = ({ target: { value, name } }) => {
     const newErrors = [];
     const { validations } = loginData[name];
-
+    if(name == "image"){
+      console.log(`name: ${name}, value;${typeof value}`)
+    }
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
+    }
+    if(name == "image"){
+      console.log(newErrors.length)
     }
     if (name == "number" && value != "") {
       if (value == 0 || value < 0) {
@@ -92,6 +97,7 @@ const CustomForm = () => {
     if (validations.pattern && !validations.pattern.test(value)) {
       newErrors.push(`Invalid ${name} value`);
     }
+    
 
     setLoginData({
       ...loginData,

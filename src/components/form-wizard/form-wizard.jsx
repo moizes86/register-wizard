@@ -4,12 +4,13 @@ import { Route, Switch } from "react-router-dom";
 // Components
 import NameEmailBirthday from "../name-email-birthday/name-email-birthday";
 import CityStreetNumber from "../city-street-number/city-street-number";
-import ImageAndHobbies from '../image-and-hobbies/image-and-hobbies';
+import ImageAndHobbies from "../image-and-hobbies/image-and-hobbies";
 
 // Styles
 import "./form-wizard.css";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import DisplayData from "../display-data/display-data";
 
 const FormWizrad = () => {
   const [loginData, setLoginData] = useState({
@@ -118,8 +119,7 @@ const FormWizrad = () => {
 
   return (
     <Form>
-      <Container>
-        <Switch>
+      <Switch>
           <Route exact path="/">
             <NameEmailBirthday loginData={loginData} validateInput={validateInput} />
           </Route>
@@ -129,8 +129,10 @@ const FormWizrad = () => {
           <Route exact path="/image-and-hobbies">
             <ImageAndHobbies loginData={loginData} validateInput={validateInput} />
           </Route>
-        </Switch>
-      </Container>
+          <Route exact path="/display-data">
+            <DisplayData />
+          </Route>
+      </Switch>
     </Form>
   );
 };

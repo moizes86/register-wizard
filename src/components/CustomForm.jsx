@@ -54,7 +54,7 @@ const CustomForm = () => {
     },
 
     number: {
-      value: true,
+      value: "",
       errors: [],
       classes: "",
       validations: {
@@ -63,7 +63,7 @@ const CustomForm = () => {
     },
 
     image: {
-      value: true,
+      value: "",
       errors: [],
       classes: "",
       validations: {
@@ -73,7 +73,7 @@ const CustomForm = () => {
     },
 
     hobby: {
-      value: true,
+      value: "",
       errors: [],
       classes: "",
       validations: {

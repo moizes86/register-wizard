@@ -1,6 +1,8 @@
 import React from "react";
-import ErrorMessages from "./ErrorMessages";
+import FormErrorMessages from "../form-error-messages/form-error-messages";
 import { Link } from "react-router-dom";
+
+// Styles
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
@@ -44,7 +46,7 @@ const NameEmailBirthday = ({ loginData, validateInput }) => {
                 defaultValue={obj.name}
                 className={`${loginData.name.classes}`}
               />
-              <ErrorMessages errors={loginData.name.errors} />
+              <FormErrorMessages errors={loginData.name.errors} />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridEmail">
@@ -57,7 +59,7 @@ const NameEmailBirthday = ({ loginData, validateInput }) => {
                 onBlur={validateInput}
                 className={`${loginData.email.classes}`}
               />
-              <ErrorMessages errors={loginData.email.errors} />
+              <FormErrorMessages errors={loginData.email.errors} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formGridBirthday">
@@ -69,13 +71,13 @@ const NameEmailBirthday = ({ loginData, validateInput }) => {
                 onBlur={validateInput}
                 className={`${loginData.birthday.classes}`}
               />
-              <ErrorMessages errors={loginData.birthday.errors} />
+              <FormErrorMessages errors={loginData.birthday.errors} />
             </Form.Group>
           </Row>
           <Row>
             <Col md={{ span: 4, offset: 8 }}>
               {errors ? (
-                <Link to="/cityStreetNumber">
+                <Link to="/city-street-number">
                   <Button onClick={setInfo}>Next</Button>
                 </Link>
               ) : (

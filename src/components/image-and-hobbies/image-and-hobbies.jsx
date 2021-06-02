@@ -24,10 +24,6 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
     localStorage.setItem("user3", JSON.stringify(obj));
   };
 
-  function handleChange({ target: { name, value } }) {
-    loginData[name] = value;
-  }
-
   return (
     <>
       <Container>
@@ -73,13 +69,15 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
               </Col>
               <Col md={{ span: 4, offset: 4 }}>
                 {errors ? (
-                  <Button
-                    onClick={() => {
-                      setInfo();
-                    }}
-                  >
-                    Display
-                  </Button>
+                  <Link to="/display-data">
+                    <Button
+                      onClick={() => {
+                        setInfo();
+                      }}
+                    >
+                      Display
+                    </Button>
+                  </Link>
                 ) : (
                   <Button disabled>Display</Button>
                 )}

@@ -24,6 +24,10 @@ const ImageAndHobby = ({ validateInput, loginData }) => {
     localStorage.setItem("user3", JSON.stringify(obj));
   };
 
+  const showCard = () => {
+    
+  }
+
   return (
     <>
       <Card className="text-center">
@@ -65,7 +69,10 @@ const ImageAndHobby = ({ validateInput, loginData }) => {
               </Link>
             </Col>
             <Col md={{ span: 4, offset: 4 }}>
-              <Button onClick={setInfo}>Display</Button>
+              <Button onClick={()=> {
+                setInfo()
+                showCard()
+              }}>Display</Button>
             </Col>
           </Row>
         </Card.Body>

@@ -9,14 +9,10 @@ import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 
 const CityStreetNumber = ({ loginData, validateInput }) => {
-<<<<<<< HEAD
   const obj = localStorage.getItem("user2")
     ? JSON.parse(localStorage.getItem("user2"))
     : "";
     
-=======
-  const obj = localStorage.getItem("user2") ? JSON.parse(localStorage.getItem("user2")) : "";
->>>>>>> 5be3b4dc506a7fd296fb85de3cdc39913aab0a46
   const errors =
     !loginData.city.errors.length &&
     !loginData.street.errors.length &&

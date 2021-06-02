@@ -61,6 +61,25 @@ const CustomForm = () => {
         required: false,
       },
     },
+
+    image: {
+      value: true,
+      errors: [],
+      classes: "",
+      validations: {
+        required: true,
+        pattern: /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g,
+      },
+    },
+
+    hobby: {
+      value: true,
+      errors: [],
+      classes: "",
+      validations: {
+        required: false,
+      },
+    },
   });
 
   const validateInput = ({ target: { value, name } }) => {
@@ -90,7 +109,14 @@ const CustomForm = () => {
     });
   };
 
-  const [isSection2, setIsSection2] = useState(false);
+  // const [details, setDetails] = useState({
+  //   phase1: false,
+  //   phase2: false,
+  //   phase3: false,
+  //   user: "",
+  // });
+
+  // const onSetDetailsHandler = (info) => {};
 
   return (
     <Form>
@@ -99,14 +125,12 @@ const CustomForm = () => {
           <NameEmailBirthday
             loginData={loginData}
             validateInput={validateInput}
-            setIsSection2={setIsSection2}
           />
         </Route>
         <Route exact path="/cityStreetNumber">
           <CityStreetNumber
             loginData={loginData}
             validateInput={validateInput}
-            setIsSection2={setIsSection2}
           />
         </Route>
         <Route exact path="/imageAndHobby">

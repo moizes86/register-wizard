@@ -7,7 +7,10 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
-const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
+const NameEmailBirthday = ({ loginData, validateInput }) => {
+  const obj = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : "";
   const errors =
     !loginData.name.errors.length &&
     !loginData.email.errors.length &&
@@ -15,6 +18,15 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
     loginData.name.value.length &&
     loginData.email.value.length &&
     loginData.birthday.value.length;
+
+  const setInfo = () => {
+    const obj = {
+      name: loginData.name.value,
+      email: loginData.email.value,
+      birthday: loginData.birthday.value,
+    };
+    localStorage.setItem("user", JSON.stringify(obj));
+  };
 
   return (
     <div>
@@ -29,6 +41,7 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
                 name="name"
                 placeholder="Enter name"
                 onBlur={validateInput}
+                defaultValue={obj.name}
                 className={`${loginData.name.classes}`}
               />
               <ErrorMessages errors={loginData.name.errors} />
@@ -40,6 +53,7 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
                 type="email"
                 name="email"
                 placeholder="Enter email"
+                defaultValue={obj.email}
                 onBlur={validateInput}
                 className={`${loginData.email.classes}`}
               />
@@ -51,6 +65,7 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
               <Form.Control
                 type="date"
                 name="birthday"
+                defaultValue={obj.birthday}
                 onBlur={validateInput}
                 className={`${loginData.birthday.classes}`}
               />
@@ -61,7 +76,7 @@ const NameEmailBirthday = ({ loginData, validateInput, setIsSection2 }) => {
             <Col md={{ span: 4, offset: 8 }}>
               {errors ? (
                 <Link to="/cityStreetNumber">
-                  <Button>Next</Button>
+                  <Button onClick={setInfo}>Next</Button>
                 </Link>
               ) : (
                 <Button disabled>Next</Button>

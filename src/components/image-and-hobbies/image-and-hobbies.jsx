@@ -41,7 +41,7 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
                   <Form.Control
                     name="image"
                     type="text"
-                    value={obj.image}
+                    defaultValue={obj.image}
                     placeholder="Enter image url"
                     onBlur={validateInput}
                     className={loginData.image.classes}

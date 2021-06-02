@@ -67,7 +67,7 @@ const NameEmailBirthday = ({ loginData, validateInput }) => {
               </Form.Group>
             </Col>
 
-            <Col xs={2}>
+            <Col xs={3}>
               <Form.Group className="mb-3" controlId="formGridBirthday">
                 <Form.Label>Birthday</Form.Label>
                 <Form.Control

@@ -1,0 +1,8 @@
+.display-data .list-group-item{
+    padding: 2rem;
+}
+
+.display-data .display-data-img{
+    /* object-fit: contain; */
+    width:2rem;
+}

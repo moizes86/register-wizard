@@ -87,6 +87,7 @@ const FormWizrad = () => {
     if (validations.required && !value) {
       newErrors.push(`${name} is required`);
     }
+    
     if (name == "number" && value != "") {
       if (value == 0 || value < 0) {
         newErrors.push(`${name} should be more than 0`);
@@ -105,16 +106,10 @@ const FormWizrad = () => {
         classes: newErrors.length ? "redInput" : "",
       },
     });
+    
   };
 
-  // const [details, setDetails] = useState({
-  //   phase1: false,
-  //   phase2: false,
-  //   phase3: false,
-  //   user: "",
-  // });
-
-  // const onSetDetailsHandler = (info) => {};
+ 
 
   return (
     <Form>

@@ -11,6 +11,7 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
   const obj = localStorage.getItem("user2")
     ? JSON.parse(localStorage.getItem("user2"))
     : "";
+    
   const errors =
     !loginData.city.errors.length &&
     !loginData.street.errors.length &&

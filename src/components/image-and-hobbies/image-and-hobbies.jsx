@@ -8,14 +8,16 @@ import { Link } from "react-router-dom";
 import FormErrorMessages from "../form-error-messages/form-error-messages";
 
 const ImageAndHobbies = ({ validateInput, loginData }) => {
+  
+  
   const obj = localStorage.getItem("user3")
     ? JSON.parse(localStorage.getItem("user3"))
     : "";
 
   const errors =
     !loginData.image.errors.length &&
-    !loginData.hobbies.errors.length &&
     loginData.image.value.length;
+    
 
   const setInfo = () => {
     const obj = {
@@ -24,7 +26,8 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
     };
     localStorage.setItem("user3", JSON.stringify(obj));
   };
-
+  
+  
   const showCard = () => {
     
   }
@@ -72,10 +75,15 @@ const ImageAndHobbies = ({ validateInput, loginData }) => {
               </Link>
             </Col>
             <Col md={{ span: 4, offset: 4 }}>
-              <Button onClick={()=> {
+              { (errors)? (<Button onClick={()=> {
                 setInfo()
                 showCard()
-              }}>Display</Button>
+              }}>Display</Button>) 
+              :
+              (
+              <Button disabled>Display</Button>
+              )
+              }
             </Col>
           </Row>
         </Card.Body>

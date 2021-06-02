@@ -72,7 +72,7 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
           <Row>
             <Col md={4}>
               <Link to="/">
-                <Button onClick={""}>Previous</Button>
+                <Button>Previous</Button>
               </Link>
             </Col>
             <Col md={{ span: 4, offset: 4 }}>
@@ -86,9 +86,7 @@ const CityStreetNumber = ({ loginData, validateInput }) => {
             </Col>
           </Row>
         </Card.Body>
-        <Card.Footer className="text-muted">
-          Jacob, Dor and Moshe are in the house
-        </Card.Footer>
+        <Card.Footer className="text-muted">Jacob, Dor and Moshe are in the house</Card.Footer>
       </Card>
     </div>
   );

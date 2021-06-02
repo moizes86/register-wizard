@@ -63,7 +63,7 @@ const ImageAndHobby = ({ validateInput, loginData }) => {
           </Row>
           <Row className="mb-2">
             <Col md={4}>
-              <Link exact to="/cityStreetNumber">
+              <Link to="/cityStreetNumber">
                 <Button variant="primary" type="submit">
                   Previous
                 </Button>
